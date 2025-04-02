@@ -1,5 +1,11 @@
 from django.contrib import admin
-from escola.models import Aluno, Responsavel, Professor
+from escola.models import Aluno, ResponsavelAluno, Professor, Turmas
+
+class TurmasAdmin(admin.ModelAdmin):
+    list_display = ('sala', 'padrinho', 'representante', 'vice_representante', 'itinerario', 'turma')
+    list_display_links = ('sala', 'padrinho', 'representante', 'vice_representante', 'itinerario', 'turma')
+    search_fields = ('itinerario', 'turma')
+    list_filter = ('itinerario', 'turma')
 
 class ResponsaveisAdmin(admin.ModelAdmin):
     list_display = ('name', 'last_name', 'phone_number', 'email', 'address', 'cpf', 'birthday')
@@ -20,6 +26,7 @@ class ProfessorAdmin(admin.ModelAdmin):
     list_filter = ('name_professor', 'last_name_professor')
     
 
-admin.site.register(Responsavel, ResponsaveisAdmin)
+admin.site.register(Turmas, TurmasAdmin)
+admin.site.register(ResponsavelAluno, ResponsaveisAdmin)
 admin.site.register(Aluno, AlunoAdmin)
 admin.site.register(Professor, ProfessorAdmin)
